@@ -5,14 +5,16 @@ const createPost = async (req, res) => {
     try{
         const {UserId, description, picturePath} = req.body;
         const user = await User.findById(UserId);
+        const {firstname, lastname, location} = user;
+        console.log(user);
         const newPost = new Post({
             UserId,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            location: user.location,
+            firstName:firstname,
+            lastName: lastname,
+            location: location,
             description,
             picturePath,
-            UserPicturePath: user.picturePath,
+            UserPicturePath: user.picturepath,
             likes: {},
             Comments: []
         });
